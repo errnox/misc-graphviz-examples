@@ -1,0 +1,33 @@
+digraph ConsensusGraph {
+  //Settings
+  
+  rankdir=TB
+  node [shape=box]
+
+  // Nodes
+
+  discussion [label="Discussion"]
+  proposal [label="Proposal"]
+  consensus_test [label="Test for Consensus"]
+  modification [label="modification"]
+  stand_aside [label="Stand Aside"]
+  concerns_raised [label="Concerns Raised" style="filled,rounded" color="#FFA8A8"]
+  consensus_achieved [label="Consensus Achieved" style="filled,rounded" color="#A8FFA8"]
+  block [label="Block"]
+  action_points [label="Action Points"]
+
+  //Edges
+
+  discussion -> proposal
+  proposal -> consensus_test
+
+  consensus_test -> concerns_raised [label="No"]
+  concerns_raised -> stand_aside
+  stand_aside -> consensus_achieved
+  consensus_achieved -> action_points
+  concerns_raised -> block
+  concerns_raised -> modification
+  modification -> consensus_test
+
+  consensus_test -> consensus_achieved [label="Yes"]
+}

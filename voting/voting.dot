@@ -1,0 +1,23 @@
+digraph voting {
+
+
+  // settings
+  rankdir="TB"
+  node [shape="box"]
+  // edge [decorate="true" minlen="5"]
+  edge [minlen="4"]
+
+  // vertices
+  politicians [label="politicians"]
+  younger [label="younger people"]
+  older [label="older people"]
+
+  // edges
+  older -> politicians [label="do vote"]
+  younger -> politicians [label="do not vote" style="dotted"]
+
+  politicians -> older [label="cater to"]
+  politicians -> younger [label="do not cater to" style="dotted"]
+
+
+}

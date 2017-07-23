@@ -1,0 +1,41 @@
+digraph TestGraph {
+  rankdir=TB
+  // ratio=1.5
+  // layout=circo
+  // ranksep=0.5
+  // nodesep=0.05
+  // splines=polyline
+  node [shape=box]
+  // edge [decorate=true dir=none fontcolor=red fontsize=8 minlen=5]
+
+  // Variables
+  john [label="John"]
+  pete [label="Pete"]
+  anne [label="Anne"]
+  article [label="Article"]
+  agency [label="Agency" shape=none]
+  ceo [label="CEO"]
+  managers [label="Managers"]
+
+  // Edges
+  john -> pete [label="interviews"]
+  pete -> anne [label="talks about"]
+  anne -> john [label="interviews"]
+  john -> article [label="writes"]
+  anne -> article [label="writes"]
+  anne -> pete [label="knows"]
+  pete -> article [label="reviews"]
+
+  subgraph clusterAgency {
+    ceo -> agency [label="works for"]
+    managers -> agency [label="works for"]
+    ceo -> managers [label="instructs"]
+    managers -> ceo [label="report to"]
+    ceo -> managers [label="evaluates" style=dashed]
+  }
+
+  john -> agency [label="writes for"]
+  managers -> john [label="evaluate" style=dashed]
+  managers -> pete [label="evaluate" style=dashed]
+  managers -> anne [label="evaluate" style=dashed]
+}

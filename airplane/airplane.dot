@@ -1,0 +1,20 @@
+digraph {
+
+  rankdir=TB
+
+  // Settings
+  node [shape="box"]
+
+  // Variables
+  flying [label="flying"]
+  on_ground [label="on ground"]
+  taking_off [label="taking off"]
+  landing [label="landing"]
+
+  // Edges
+  on_ground -> taking_off
+  flying -> landing
+  taking_off -> flying
+  landing -> on_ground
+
+}

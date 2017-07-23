@@ -1,0 +1,58 @@
+digraph RFC {
+  //Settings
+  
+  rankdir=TB
+  node [shape=box]
+
+  // Nodes
+
+  start [shape=circle]
+  end [shape=circle]
+
+  fork [label="Fork repo"]
+  copy [label="$ cp 0000-template.md\ntext/0000-my-feature.md" fontname=monospace]
+  pull [label="Pull request"]
+  followups [label="Followup PRs"]
+  feedback [label="Feedback"]
+  merge [label="Merge pull request"]
+  number [label="Assign number"]
+  close [label="Close pull request"]
+  implement [label="Implement"]
+  move [label="$ mv text/<rfc-name>.md\ncomplete/<rfc-name>.md" fontname=monospace]
+  // States
+  node [shape=box3d style=rounded]
+  active [label="STATE: active"]
+  complete [label="STATE: complete"]
+  inactive [label="STATE: inactive"]
+  node [shape=box style=normal]
+  // Decisions
+  x_pull [label="x" shape=circle]
+  x_implement [label="x" shape=circle]
+
+  //Edges
+
+  start -> fork
+  fork -> copy
+  copy -> pull
+
+  pull -> feedback
+  feedback -> followups
+  followups -> feedback
+
+  feedback -> x_pull
+  x_pull -> merge [label="consensus"]
+  x_pull -> close [label="no consensus"]
+
+  merge -> number
+  merge -> active
+
+  number -> x_implement
+  x_implement -> implement
+  x_implement -> inactive
+
+  implement -> move
+
+  move -> complete
+
+  complete -> end
+}

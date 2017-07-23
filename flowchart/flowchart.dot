@@ -1,0 +1,39 @@
+digraph Flowchart {
+  rankdir=TB
+  nodesep=0.25
+  ranksep=0.5
+
+  // Settings
+  node [shape=box]
+  edge [decorate=true]
+
+  // Nodes
+
+  start [label="Start" shape=doublecircle]
+  stop [label="Stop" shape=doublecircle]
+
+  first_contact [label="Is it measurable?"]
+  measurement [label="Is the measurement satisfying?"]
+  assumptions [label="Can you make assumptions?"]
+  evaluation [label="Can you draw conclusions?"]
+  action [label="Act!"]
+
+  // Edges
+
+  start -> first_contact
+
+  first_contact -> assumptions [label="no"]
+  first_contact -> measurement [label="yes"]
+
+  measurement -> first_contact [label="no"]
+  measurement -> evaluation [label="yes"]
+
+  evaluation -> first_contact [label="no"]
+  evaluation -> action [label="yes"]
+
+  assumptions -> measurement [label="no"]
+  assumptions -> action [label="yes"]
+
+  action -> stop
+
+}
